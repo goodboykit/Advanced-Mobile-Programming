@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
 
-/// ThemeProvider manages the app state for theme switching
-/// This is an example of app state that affects the entire application
 class ThemeProvider extends ChangeNotifier {
-  // Private variable to track if dark mode is enabled
   bool _isDarkMode = false;
 
-  // Getter to access the current theme mode status
   bool get isDarkMode => _isDarkMode;
 
-  // Method to toggle between light and dark themes
   void toggleTheme() {
     _isDarkMode = !_isDarkMode;
-    // Notify all listeners about the state change
     notifyListeners();
   }
 
-  // Method to get the current theme data
   ThemeData get currentTheme {
     return _isDarkMode ? _darkTheme : _lightTheme;
   }
 
-  // Light theme configuration
   static final ThemeData _lightTheme = ThemeData(
     brightness: Brightness.light,
     primarySwatch: Colors.blue,
@@ -49,7 +41,6 @@ class ThemeProvider extends ChangeNotifier {
     ),
   );
 
-  // Dark theme configuration
   static final ThemeData _darkTheme = ThemeData(
     brightness: Brightness.dark,
     primarySwatch: Colors.teal,

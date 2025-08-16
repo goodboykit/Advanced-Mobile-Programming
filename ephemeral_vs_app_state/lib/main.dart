@@ -4,34 +4,27 @@ import 'theme_provider.dart';
 
 void main() {
   runApp(
-    // Wrap the app with ChangeNotifierProvider to provide app state
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
       child: const MyApp(),
     ),
   );
 }
-
-/// Root widget of the application
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Listen to theme changes using Provider
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return MaterialApp(
       title: 'Ephemeral vs App State Demo',
       debugShowCheckedModeBanner: false,
-      // Use the theme from the provider (App State)
       theme: themeProvider.currentTheme,
       home: const HomeScreen(),
     );
   }
 }
-
-/// Main screen demonstrating both ephemeral and app state
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -40,13 +33,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Ephemeral state: counter value that only affects this widget
   int _counter = 0;
   
-  // Ephemeral state: temporary message
   String _message = 'Welcome! Start counting...';
 
-  // Method to increment counter (ephemeral state management)
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -94,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('State Management Demo'),
+        title: const Text('State Management'),
         centerTitle: true,
         actions: [
           // Theme toggle switch (App State)
@@ -122,14 +112,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // State Type Indicators
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
                       const Text(
-                        'State Types Demonstration',
+                        'State Types',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -166,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       const Text(
-                        'Ephemeral State Example',
+                        'Ephemeral State',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -238,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       const Text(
-                        'App State Example',
+                        'App State ',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -381,7 +370,7 @@ class _SecondScreenState extends State<SecondScreen> {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Theme persists across screens!',
+                        'The theme of light and dark persists across the screens',
                         style: Theme.of(context).textTheme.headlineSmall,
                         textAlign: TextAlign.center,
                       ),
@@ -391,12 +380,6 @@ class _SecondScreenState extends State<SecondScreen> {
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(height: 16),
-                      const Text(
-                        'This demonstrates App State - the theme setting is maintained '
-                        'across the entire application.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14),
-                      ),
                     ],
                   ),
                 ),
@@ -486,7 +469,7 @@ class _SecondScreenState extends State<SecondScreen> {
                   themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
                 ),
                 label: Text(
-                  'Toggle Theme (App State)',
+                  'Toggle Theme',
                 ),
               ),
             ],
